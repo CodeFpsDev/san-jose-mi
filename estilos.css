@@ -38,10 +38,12 @@ nav a {
     font-size: 0.9rem;
 }
 
-/* HERO - AJUSTADO PARA DAR ESPACIO AL LOGO */
+/* HERO - CORREGIDO PARA MOSTRAR LA CANCHA Y DAR ESPACIO */
 .hero {
-    min-height: 80vh; /* Cambiado a min-height para ser flexible */
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('CNACHA DE SANJO.jpg');
+    min-height: 85vh; 
+    /* IMPORTANTE: Usamos %20 para el espacio en el nombre del archivo */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                url('CNACHA%20DE%20SANJO.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -51,28 +53,26 @@ nav a {
     align-items: center;
     color: white;
     text-align: center;
-    padding: 40px 5%;
+    padding: 60px 5%;
 }
 
-/* EL ARREGLO DEFINITIVO PARA EL ESCUDO GRANDE */
+/* EL ESCUDO GRANDE E IMPACTANTE */
 .hero img.hero-logo {
     display: block;
     margin: 0 auto 30px auto;
-    width: 500px !important;  /* El !important obliga al navegador a usar este tamaño */
-    max-width: 90% !important; /* Para que en celulares no se salga de la pantalla */
+    width: 500px !important;  
+    max-width: 90% !important; 
     height: auto !important;
     max-height: 450px !important;
-    filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.8));
+    filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.9)); /* Sombra más profunda */
     object-fit: contain;
 }
 
-.hero {
-    min-height: 85vh; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 5%;
+.hero h1 { 
+    font-size: 3.5rem; 
+    text-transform: uppercase; 
+    text-shadow: 2px 4px 10px rgba(0,0,0,0.8);
+    margin: 0;
 }
 
 /* WIDGET PARTIDO */
@@ -157,17 +157,31 @@ footer {
     border-top: 5px solid var(--rojo-acento);
 }
 .footer-logo { width: 80px; margin-bottom: 20px; }
+
+/* REDES SOCIALES SIN RAYAS */
 .social-links { margin: 20px 0; }
-.social-links a { color: white; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
-.social-links a:hover { color: var(--rojo-acento); }
+.social-links a {
+    text-decoration: none !important; 
+    color: white;
+    font-size: 1.8rem;
+    margin: 0 15px;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    text-decoration: none !important;
+    color: var(--rojo-acento);
+}
+
 .footer-divider { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0; }
 .copyright { font-size: 0.8rem; opacity: 0.7; }
 
 /* RESPONSIVE MÓVIL */
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.2rem; }
-    .hero { min-height: 60vh; padding-top: 80px; }
-    .hero-logo { max-width: 180px; }
+    .hero { min-height: 65vh; padding-top: 100px; }
+    /* Ajuste para que el logo se vea grande pero no rompa el móvil */
+    .hero img.hero-logo { width: 300px !important; max-height: 250px !important; }
 }
 
 /* ESCRITORIO */
@@ -181,17 +195,4 @@ footer {
         scroll-snap-type: none;
     }
     .card-producto { max-width: 100%; }
-}
-.social-links a {
-    text-decoration: none; /* Esto quita cualquier raya o subrayado */
-    color: white;
-    font-size: 1.8rem;
-    margin: 0 15px;
-    display: inline-block; /* Ayuda a que el enlace se comporte mejor */
-}
-
-/* También por seguridad, quita el subrayado al pasar el mouse */
-.social-links a:hover {
-    text-decoration: none;
-    color: var(--rojo-acento);
 }
