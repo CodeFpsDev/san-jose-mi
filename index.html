@@ -6,17 +6,17 @@
     <title>Club San José-Mi | Sitio Oficial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="estilos.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
 
     <header>
         <div class="logo"><strong>Club San José-Mi</strong></div>
         <nav>
-            <a href="#">El Club</a>
-            <a href="#">Noticias</a>
-            <a href="#">Plantel</a>
-            <a href="#">Tienda</a>
+            <a href="#club">El Club</a>
+            <a href="#noticias">Noticias</a>
+            <a href="#plantel">Plantel</a>
+            <a href="#tienda">Tienda</a>
         </nav>
     </header>
 
@@ -36,90 +36,105 @@
         <div class="team-box">RIVAL</div>
     </div>
 
-    <div class="container">
+    <div class="container" id="tienda">
         <h2 class="titulo-seccion">Tienda Oficial</h2>
-
-        <div class="grid-tienda">
+        
+        <div class="store-container">
+            
             <div class="card-producto">
-                <div class="img-container"><img src="remera ejemplo.png" alt="Camiseta 1"></div>
+                <div class="img-container"><img src="casaca senior.jpg" alt="Uniforme Senior"></div>
                 <div class="card-body-tienda">
                     <span class="tag">Titular 2026</span>
-                    <h3>Camiseta Oficial Local</h3>
-                    <p class="precio">250.000 ₲</p>
-                    <button onclick="comprar('la Camiseta Titular')" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> COMPRAR AHORA
+                    <h3>Uniforme Senior</h3>
+                    <p class="precio">100.000 ₲</p>
+                    <button onclick="comprar('el Uniforme Senior')" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> PEDIR AHORA
                     </button>
                 </div>
             </div>
 
             <div class="card-producto">
-                <div class="img-container"><img src="remera ejemplo.png" alt="Camiseta 2"></div>
+                <div class="img-container"><img src="casaca negro.jpg" alt="Uniforme Negro"></div>
                 <div class="card-body-tienda">
-                    <span class="tag">Alternativa</span>
-                    <h3>Camiseta Visitante Blanca</h3>
-                    <p class="precio">230.000 ₲</p>
-                    <button onclick="comprar('la Camiseta Visitante Blanca')" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> COMPRAR AHORA
+                    <span class="tag">Alternativa 2026</span>
+                    <h3>Alternativa</h3>
+                    <p class="precio">100.000 ₲</p>
+                    <button onclick="comprar('el Uniforme Negro')" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> PEDIR AHORA
                     </button>
                 </div>
             </div>
 
             <div class="card-producto">
-                <div class="img-container"><img src="remera ejemplo.png" alt="Calzado"></div>
+                <div class="img-container"><img src="casaca senior mas blanco.jpg" alt="Uniforme Blanco/Rojo"></div>
                 <div class="card-body-tienda">
-                    <span class="tag">Calzado</span>
-                    <h3>Botines Edición Especial</h3>
-                    <p class="precio">450.000 ₲</p>
-                    <button onclick="comprar('los Botines Edición Especial')" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> COMPRAR AHORA
+                    <span class="tag">Titular 2026</span>
+                    <h3>Primera</h3>
+                    <p class="precio">100.000 ₲</p>
+                    <button onclick="comprar('el Uniforme Blanco')" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> PEDIR AHORA
                     </button>
                 </div>
             </div>
 
             <div class="card-producto">
-                <div class="img-container"><img src="remera ejemplo.png" alt="Entrenamiento"></div>
+                <div class="img-container"><img src="casaca primera.jpg" alt="Uniforme Primera"></div>
                 <div class="card-body-tienda">
-                    <span class="tag">Entrenamiento</span>
-                    <h3>Camiseta Training Azul</h3>
-                    <p class="precio">180.000 ₲</p>
-                    <button onclick="comprar('la Camiseta de Entrenamiento Azul')" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> COMPRAR AHORA
+                    <span class="tag">Primera División</span>
+                    <h3>Juvenil</h3>
+                    <p class="precio">100.000 ₲</p>
+                    <button onclick="comprar('el Uniforme de Primera')" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> PEDIR AHORA
                     </button>
                 </div>
             </div>
 
             <div class="card-producto">
-                <div class="img-container"><img src="remera ejemplo.png" alt="Campera"></div>
+                <div class="img-container"><img src="casaca con sponsor.jpg" alt="Uniforme con Sponsor"></div>
                 <div class="card-body-tienda">
-                    <span class="tag">Abrigos</span>
-                    <h3>Campera de Salida</h3>
-                    <p class="precio">320.000 ₲</p>
-                    <button onclick="comprar('la Campera de Salida')" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> COMPRAR AHORA
-                    </button>
-                </div>
-            </div>
-
-            <div class="card-producto">
-                <div class="img-container"><img src="remera ejemplo.png" alt="Short"></div>
-                <div class="card-body-tienda">
-                    <span class="tag">Oficial</span>
-                    <h3>Short de Juego Titular</h3>
+                    <span class="tag">Edición Especial</span>
+                    <h3>Categoria primera</h3>
                     <p class="precio">120.000 ₲</p>
-                    <button onclick="comprar('el Short de Juego Titular')" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> COMPRAR AHORA
+                    <button onclick="comprar('el Kit con Sponsor')" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> PEDIR AHORA
                     </button>
                 </div>
             </div>
+
+            <div class="card-producto">
+                <div class="img-container"><img src="casaca primera con sponsor.jpg" alt="Uniforme Primera Pro"></div>
+                <div class="card-body-tienda">
+                    <span class="tag">Pro 2026</span>
+                    <h3>Categoria juvenil</h3>
+                    <p class="precio">120.000 ₲</p>
+                    <button onclick="comprar('el Uniforme Pro')" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> PEDIR AHORA
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <div class="sponsors-section">
         <p class="sponsor-title">Agradecemos a nuestros sponsors</p>
-        <div class="sponsors-grid">
-            <img src="ariana modas.jpeg" alt="Ariana Modas">
-            <img src="super total.jpeg" alt="Super Total">
-            <img src="herrajes misiones.jpeg" alt="Herrajes Misiones">
+        <div class="sponsors-slider">
+            <div class="sponsors-track">
+                <div class="slide"><img src="ariana modas.jpeg" alt="Ariana Modas"></div>
+                <div class="slide"><img src="super total.jpeg" alt="Super Total"></div>
+                <div class="slide"><img src="herrajes misiones.jpeg" alt="Herrajes Misiones"></div>
+                <div class="slide"><img src="super victor.jpg" alt="Super Victor"></div>
+                <div class="slide"><img src="liz comercial.jpg" alt="Liz Comercial"></div>
+                <div class="slide"><img src="idearo sa.jpg" alt="Idearo SA"></div>
+                <div class="slide"><img src="lulu novedades.jpg" alt="Lulu Novedades"></div>
+                <div class="slide"><img src="nmd training.jpg" alt="NMD Training"></div>
+                <div class="slide"><img src="RA.jpg" alt="RA"></div>
+                <div class="slide"><img src="hym comercial.jpg" alt="Hym Comercial"></div>
+                <div class="slide"><img src="despensa boqueron.jpg" alt="Despensa Boquerón"></div>
+                
+                <div class="slide"><img src="ariana modas.jpeg" alt="Ariana Modas"></div>
+                <div class="slide"><img src="super total.jpeg" alt="Super Total"></div>
+            </div>
         </div>
     </div>
 
@@ -127,12 +142,18 @@
         <img src="club fondo trans.png" alt="Logo" class="footer-logo">
         <h3>Club San José-Mi</h3>
         <p>¡Seguinos en nuestras redes oficiales!</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/share/1LEmsB3Ni7/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/club.sanjosemi?igsh=MWZuODUxNndlaXRkeg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a> 
-        </div>
+        
+       <div class="social-links">
+    <a href="https://www.facebook.com/share/1LEmsB3Ni7/?mibextid=wwXIfr" target="_blank">
+        <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.instagram.com/club.sanjosemi?igsh=MWZuODUxNndlaXRkeg%3D%3D&utm_source=qr" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a> 
+</div>
         <hr class="footer-divider">
         <p class="copyright">&copy; 2026 Club San José-Mi - Sitio Oficial</p>
     </footer>
+
 </body>
 </html>
