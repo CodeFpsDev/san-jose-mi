@@ -128,7 +128,10 @@
         const db = firebase.database();
         firebase.analytics();
 
-        // SEGURIDAD: Ocultar el sorteo si ya participó anteriormente
+        // Variables para controlar los clics en redes
+        let clicInstagram = false;
+        let clicFacebook = false;
+
         window.addEventListener('load', () => {
             if (localStorage.getItem('participo_sorteo') === 'true') {
                 document.getElementById('popup-sorteo-shein').style.display = 'none';
@@ -139,11 +142,30 @@
             document.getElementById('popup-sorteo-shein').style.display = 'none';
         }
 
-        function mostrarFormSorteo() {
-            setTimeout(() => {
-                document.getElementById('paso-1-shein').style.display = 'none';
-                document.getElementById('paso-2-shein').style.display = 'block';
-            }, 1000);
+        // Nueva función para validar ambos clics
+        function registrarClicRed(red) {
+            if (red === 'ig') {
+                clicInstagram = true;
+                const btnIg = document.getElementById('btn-ig-sorteo');
+                btnIg.innerHTML = '<i class="fas fa-check-circle"></i> INSTAGRAM LISTO';
+                btnIg.style.background = "#2e7d32";
+                btnIg.style.pointerEvents = "none";
+            }
+            if (red === 'fb') {
+                clicFacebook = true;
+                const btnFb = document.getElementById('btn-fb-sorteo');
+                btnFb.innerHTML = '<i class="fas fa-check-circle"></i> FACEBOOK LISTO';
+                btnFb.style.background = "#2e7d32";
+                btnFb.style.pointerEvents = "none";
+            }
+
+            // Si ambos clics se realizaron, mostrar el paso 2
+            if (clicInstagram && clicFacebook) {
+                setTimeout(() => {
+                    document.getElementById('paso-1-shein').style.display = 'none';
+                    document.getElementById('paso-2-shein').style.display = 'block';
+                }, 1000);
+            }
         }
 
         async function guardarSorteoShein() {
@@ -155,7 +177,6 @@
                 return;
             }
 
-            // SEGURIDAD: Doble verificación antes de enviar a Firebase
             if (localStorage.getItem('participo_sorteo') === 'true') {
                 alert("Ya estás participando en el sorteo.");
                 cerrarPopupSorteo();
@@ -169,9 +190,7 @@
                     fecha: new Date().toLocaleString()
                 });
 
-                // MARCAR COMO PARTICIPANTE para bloquear futuros intentos
                 localStorage.setItem('participo_sorteo', 'true');
-
                 alert("¡Registrado con éxito! Mucha suerte.");
                 cerrarPopupSorteo();
             } catch (e) {
@@ -200,9 +219,9 @@
         .titulo-sorteo { color: #d32f2f; margin: 0; font-size: 22px; }
         .subtitulo-sorteo { margin: 2px 0 10px; font-weight: bold; color: #555; font-size: 12px; }
         .btn-redes-shein {
-            display: block; width: 180px; padding: 8px; margin: 5px;
+            display: block; width: 190px; padding: 10px; margin: 5px;
             border-radius: 20px; text-decoration: none; font-weight: bold; color: white;
-            font-size: 11px; text-align: center;
+            font-size: 11px; text-align: center; transition: background 0.3s;
         }
         .btn-ig { background: linear-gradient(45deg, #f09433, #dc2743, #cc2397); }
         .btn-fb { background: #1877F2; }
@@ -222,15 +241,27 @@
             <div id="paso-1-shein">
                 <h1 class="titulo-sorteo">🏆 SORTEO</h1>
                 <p class="subtitulo-sorteo">CLUB SAN JOSÉ-MI</p>
-                <p style="font-size: 11px; color: #777; margin-bottom: 10px;">Seguinos para participar:</p>
-                <a href="https://www.instagram.com/club.sanjosemi" target="_blank" class="btn-redes-shein btn-ig" onclick="mostrarFormSorteo()">Seguir en Instagram</a>
-                <a href="https://www.facebook.com/share/1DRFrTNJcx/?mibextid=wwXIfr" target="_blank" class="btn-redes-shein btn-fb" onclick="mostrarFormSorteo()">Seguir en Facebook</a>
+                <p style="font-size: 10px; color: #777; margin-bottom: 10px; font-weight: bold;">SEGUINOS EN AMBAS REDES:</p>
+                
+                <a href="https://www.instagram.com/club.sanjosemi" target="_blank" 
+                   id="btn-ig-sorteo" class="btn-redes-shein btn-ig" 
+                   onclick="registrarClicRed('ig')">
+                   1. SEGUIR EN INSTAGRAM
+                </a>
+                
+                <a href="https://www.facebook.com/share/1DRFrTNJcx/?mibextid=wwXIfr" target="_blank" 
+                   id="btn-fb-sorteo" class="btn-redes-shein btn-fb" 
+                   onclick="registrarClicRed('fb')">
+                   2. SEGUIR EN FACEBOOK
+                </a>
             </div>
+
             <div id="paso-2-shein" style="display: none;">
-                <p style="color: #2e7d32; font-weight: bold; font-size: 12px;">✅ PASO 1 LISTO</p>
+                <p style="color: #2e7d32; font-weight: bold; font-size: 13px; margin-bottom: 5px;">✅ PASOS COMPLETADOS</p>
+                <p style="font-size: 11px; margin-bottom: 10px;">Ingresá tus datos para el sorteo:</p>
                 <input type="text" id="nombre-shein" class="input-shein" placeholder="Nombre completo">
                 <input type="tel" id="whatsapp-shein" class="input-shein" placeholder="Tu WhatsApp">
-                <button class="btn-ganar-shein" onclick="guardarSorteoShein()">¡PARTICIPAR!</button>
+                <button class="btn-ganar-shein" onclick="guardarSorteoShein()">¡PARTICIPAR AHORA!</button>
             </div>
         </div>
     </div>
