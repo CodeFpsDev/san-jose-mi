@@ -128,6 +128,13 @@
         const db = firebase.database();
         firebase.analytics();
 
+        // SEGURIDAD: Ocultar el sorteo si ya participó anteriormente
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('participo_sorteo') === 'true') {
+                document.getElementById('popup-sorteo-shein').style.display = 'none';
+            }
+        });
+
         function cerrarPopupSorteo() {
             document.getElementById('popup-sorteo-shein').style.display = 'none';
         }
@@ -148,12 +155,22 @@
                 return;
             }
 
+            // SEGURIDAD: Doble verificación antes de enviar a Firebase
+            if (localStorage.getItem('participo_sorteo') === 'true') {
+                alert("Ya estás participando en el sorteo.");
+                cerrarPopupSorteo();
+                return;
+            }
+
             try {
                 await db.ref("participantes").push({
                     nombre: nombre,
                     telefono: tel,
                     fecha: new Date().toLocaleString()
                 });
+
+                // MARCAR COMO PARTICIPANTE para bloquear futuros intentos
+                localStorage.setItem('participo_sorteo', 'true');
 
                 alert("¡Registrado con éxito! Mucha suerte.");
                 cerrarPopupSorteo();
