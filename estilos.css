@@ -3,33 +3,41 @@
     --rojo-acento: #e30613;
     --blanco-fondo: #ffffff;
     --gris-suave: #f4f7f6;
-    --texto-oscuro: #333333;
+    
+    /* --- COLOR TOPO / GRIS OSCURO - NUEVO --- */
+    --texto-topo: #555555; /* Color base para descripciones y secundarios */
+    --texto-oscuro: #222222; /* Para títulos principales, no negro puro */
+    
     --whatsapp-green: #25D366;
 }
 
-/* 1. CORRECCIÓN GLOBAL: EVITA ESPACIOS BLANCOS LATERALES */
+/* 1. RESET Y AJUSTE DE ANCHO */
 * {
-    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
+    width: 100%;
+    max-width: 100%;
     margin: 0;
     padding: 0;
-    width: 100%;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     background-color: var(--blanco-fondo);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--texto-oscuro);
+    /* Color de texto por defecto para todo el body */
+    color: var(--texto-topo); 
 }
 
-/* HEADER Y NAVEGACIÓN */
+/* HEADER Y NAVEGACIÓN - BLINDADO */
 header {
     background-color: var(--azul-principal);
     padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: white; /* Mantenemos blanco para contraste en fondo negro */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -42,15 +50,16 @@ nav {
 }
 
 nav a {
-    color: white;
+    color: white; /* Mantenemos blanco */
     text-decoration: none;
     margin-left: 20px;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
-/* HERO - LA CANCHA */
+/* HERO - LA CANCHA (TEXTOS AJUSTADOS) */
 .hero {
     width: 100%; 
     min-height: 85vh; 
@@ -65,28 +74,36 @@ nav a {
     align-items: center;
     color: white;
     text-align: center;
-    padding: 60px 5%;
+    padding: 80px 5% 60px 5%;
 }
 
 .hero img.hero-logo {
     display: block;
     margin: 0 auto 30px auto;
-    width: 500px !important;  
-    max-width: 90% !important; 
+    width: 450px;  
+    max-width: 85% !important;
     height: auto !important;
-    max-height: 450px !important;
+    max-height: 400px !important;
     filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.9));
     object-fit: contain;
 }
 
 .hero h1 { 
-    font-size: 3.5rem; 
+    font-size: 3.2rem; 
     text-transform: uppercase; 
     text-shadow: 2px 4px 10px rgba(0,0,0,0.8);
     margin: 0;
+    max-width: 90%;
+    color: white; /* Título principal en blanco */
 }
 
-/* WIDGET PARTIDO */
+/* Subtítulo del hero en color topo suave */
+.hero p {
+    color: rgba(255,255,255,0.8); /* Un blanco con transparencia para efecto topo */
+    margin-top: 10px;
+}
+
+/* WIDGET PARTIDO - TEXTOS AJUSTADOS */
 .match-widget {
     width: 100%;
     background: var(--gris-suave);
@@ -94,22 +111,44 @@ nav a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
     border-bottom: 5px solid var(--rojo-acento);
 }
-.team-box { font-weight: bold; font-size: 1.2rem; }
-.match-info { text-align: center; color: var(--azul-principal); }
 
-/* TIENDA */
-.container { padding: 40px 5%; width: 100%; }
-.titulo-seccion { border-left: 5px solid var(--rojo-acento); padding-left: 15px; text-transform: uppercase; font-size: 1.5rem; margin-bottom: 30px; }
+.team-box { 
+    font-weight: bold; 
+    font-size: 1.2rem; 
+    color: var(--texto-oscuro); /* Nombre de equipos en gris oscuro */
+}
+
+.match-info { 
+    text-align: center; 
+    color: var(--texto-topo); /* Fecha e info en gris topo */
+}
+
+/* TIENDA - TEXTOS AJUSTADOS */
+.container { 
+    padding: 50px 5%; 
+    width: 100%; 
+    max-width: 1300px; 
+    margin: 0 auto; 
+}
+
+.titulo-seccion { 
+    border-left: 5px solid var(--rojo-acento); 
+    padding-left: 15px; 
+    text-transform: uppercase; 
+    font-size: 1.5rem; 
+    margin-bottom: 35px; 
+    color: var(--texto-oscuro); /* Títulos de sección en gris oscuro */
+}
 
 .store-container {
     display: flex; 
     overflow-x: auto; 
     scroll-snap-type: x mandatory; 
     gap: 20px;
-    padding: 20px 0;
+    padding: 20px 0 30px 0; 
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     width: 100%;
@@ -118,27 +157,35 @@ nav a {
 .store-container::-webkit-scrollbar { display: none; }
 
 .card-producto {
-    min-width: 280px; 
-    max-width: 300px;
+    min-width: 270px; 
+    max-width: 290px;
+    width: 280px;
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     scroll-snap-align: center; 
     flex-shrink: 0; 
-    border: 1px solid #eee;
+    border: 1px solid #f0f0f0;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
 }
 
 .img-container { 
-    height: 280px; 
-    background: #f9f9f9; 
+    height: 270px; 
+    background: #fdfdfd; /* CORREGIDO COLOR INVÁLIDO */
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    padding: 10px; 
+    padding: 15px; 
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .img-container img { 
@@ -156,12 +203,32 @@ nav a {
     justify-content: space-between; 
 }
 
-.precio { font-size: 1.6rem; color: var(--azul-principal); font-weight: 800; margin: 10px 0; }
-.tag { color: var(--rojo-acento); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+/* Nombre del producto en gris oscuro */
+.card-body-tienda h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--texto-oscuro); 
+}
+
+/* Precio en gris topo */
+.precio { 
+    font-size: 1.5rem; 
+    color: var(--texto-topo); /* PRECIO EN COLOR TOPO */
+    font-weight: 800; 
+    margin: 10px 0; 
+}
+
+.tag { 
+    color: var(--rojo-acento); 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
 
 .btn-whatsapp {
     background: var(--whatsapp-green);
-    color: white;
+    color: white; /* Mantenemos blanco en el botón verde */
     border: none;
     width: 100%;
     padding: 12px;
@@ -170,66 +237,111 @@ nav a {
     cursor: pointer;
     font-family: inherit;
     transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.btn-whatsapp:hover {
+    background: #1eb956;
 }
 
 /* SPONSORS */
-.sponsors-section { padding: 40px 0; overflow: hidden; border-top: 1px solid #eee; width: 100%; }
-.sponsors-track { display: flex; width: calc(200px * 13); animation: scroll 30s linear infinite; }
-.slide { width: 200px; display: flex; justify-content: center; flex-shrink: 0; }
-.slide img { height: 70px; width: auto; max-width: 100%; object-fit: contain; }
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-200px * -11)); }
+.sponsors-section { 
+    padding: 40px 0; 
+    overflow: hidden; 
+    border-top: 1px solid #eee; 
+    width: 100%;
+    background: white;
 }
 
-/* FOOTER - ANCHO TOTAL */
+.sponsors-track { 
+    display: flex; 
+    width: calc(180px * 20); 
+    animation: scrollSponsors 35s linear infinite; 
+}
+
+.slide { 
+    width: 180px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    flex-shrink: 0; 
+    padding: 0 10px;
+}
+
+.slide img { 
+    height: 60px; 
+    width: auto; 
+    max-width: 100%; 
+    object-fit: contain; 
+}
+
+@keyframes scrollSponsors {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-180px * 10)); }
+}
+
+/* FOOTER - TEXTOS AJUSTADOS */
 footer {
     background: var(--azul-principal);
-    color: white;
-    padding: 50px 5% 20px;
+    color: white; /* Mantenemos blanco */
+    padding: 40px 5% 20px 5%;
     text-align: center;
     border-top: 5px solid var(--rojo-acento);
     width: 100%; 
     margin: 0;
 }
 
-.footer-logo { width: 80px; margin-bottom: 20px; }
+.footer-logo { 
+    width: 70px; 
+    margin-bottom: 15px; 
+}
 
-/* REDES Y BANCOS - LOGOS A COLOR */
-.social-links { margin: 20px 0; }
+.footer h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: white; /* Mantenemos blanco */
+}
+
+/* REDES Y BANCOS */
+.social-links { margin: 15px 0; }
 .social-links a {
     text-decoration: none !important; 
-    color: white;
-    font-size: 1.8rem;
-    margin: 0 15px;
+    color: white; /* Mantenemos blanco */
+    font-size: 1.7rem; 
+    margin: 0 12px;
     display: inline-block;
 }
 
 .social-links a:hover { color: var(--rojo-acento); }
 
+.pago-titulo {
+    font-size: 0.9rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: rgba(255,255,255,0.7); /* Blanco tenue para efecto topo */
+}
+
 .bancos-grid {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 12px; 
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
 }
 
 .bancos-grid img {
-    height: 24px;
+    height: 22px; 
     width: auto;
-    max-width: 60px;
+    max-width: 55px;
     object-fit: contain;
-    /* FILTROS ELIMINADOS PARA COLOR NORMAL */
-    opacity: 1;
-    transition: 0.3s ease;
+    opacity: 1; 
+    transition: 0.2s ease;
 }
 
 .bancos-grid img:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .ws-mini {
@@ -237,59 +349,69 @@ footer {
     padding-left: 10px;
 }
 
-.footer-divider { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0; }
-.copyright { font-size: 0.8rem; opacity: 0.7; }
+.footer-divider { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 25px 0; }
+.copyright { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
 
-/* --- RESPONSIVE --- */
-
+/* --- RESPONSIVE CORREGIDO --- */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-        padding: 15px;
+        padding: 12px 5%;
         text-align: center;
     }
     nav {
-        margin-top: 15px;
+        margin-top: 12px;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
     }
     nav a {
-        margin: 0 5px;
-        font-size: 0.75rem;
+        margin: 0 4px;
+        font-size: 0.7rem;
     }
-    .hero h1 { font-size: 2.2rem; }
-    .hero { min-height: 65vh; padding-top: 100px; }
-    .hero img.hero-logo { width: 300px !important; max-height: 250px !important; }
-    .match-widget { flex-direction: column; gap: 15px; }
+    .hero h1 { font-size: 2rem; }
+    .hero { min-height: 60vh; padding-top: 90px; }
+    .hero img.hero-logo { width: 280px !important; }
+    
+    .match-widget { flex-direction: column; gap: 12px; padding: 20px 5%; }
+    .team-box { font-size: 1rem; }
+    
+    .card-producto {
+        min-width: 260px;
+        width: 270px;
+    }
 }
 
+/* ESCRITORIO - GRILLA VOLVIENDO A LA NORMALIDAD */
 @media (min-width: 1024px) {
     .store-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); 
         overflow-x: visible;
         justify-content: center;
-        gap: 30px;
+        gap: 25px; 
         padding: 20px 0;
         scroll-snap-type: none;
+        max-width: 1200px; 
+        margin: 0 auto;
     }
+    
     .card-producto { 
         min-width: unset; 
         max-width: 100%; 
+        width: 100%; 
         flex-shrink: 1; 
     }
 }
 
+/* Contador en gris topo */
 .countdown-timer {
-    display: block;
-    margin-top: 15px;
-    background: #222;
-    color: var(--rojo-acento);
-    padding: 8px 12px;
-    border-radius: 6px;
+    display: inline-block;
+    margin-top: 12px;
+    background: #1a1a1a;
+    color: var(--texto-topo); /* CONTADOR EN TOPO */
+    padding: 6px 10px;
+    border-radius: 5px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border: 1px solid rgba(227, 6, 19, 0.3);
+    font-size: 1rem;
 }
